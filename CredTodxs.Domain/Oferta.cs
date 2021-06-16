@@ -4,14 +4,15 @@ namespace CredTodxs.Domain
 {
     public class Oferta
     {
-        int Id {get; set;}
-        int IdSolicitacao {get; set;}
-        int QtdParcelas {get; set;}
-        decimal ValorParcelas {get; set;}
-        decimal Cet {get; set;}
-        decimal Juros {get; set;}
-        int FormaPagamento {get; set;}
-        DateTime DataVencimento {get; set;}
-        int TipoCredito {get; set;}
+        public int Id {get; set;}
+        public int IdSolicitacao {get; set;}
+        public Solicitacao Solicitacao {get; set;}
+        public int QtdParcelas {get; set;}
+        public decimal ValorParcelas {get; set;}
+        public decimal Cet {get; set;}
+        public decimal Juros {get; set;}
+        public int FormaPagamento {get; set;}
+        public DateTime DataVencimento {get; set;}
+        public int TipoCredito {get; set;}
     }
 }

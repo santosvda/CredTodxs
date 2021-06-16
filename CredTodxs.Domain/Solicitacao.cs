@@ -2,15 +2,16 @@ namespace CredTodxs.Domain
 {
     public class Solicitacao
     {
-        int Id {get; set;}
-        int IdPessoa {get; set;}
-        decimal QtdSolicitada {get; set;}
-        decimal RendaMensal {get; set;}
-        int Residencia {get; set;}
-        bool Brasileiro {get; set;}
-        string CidadeNatal {get; set;}
-        string UfNatal {get; set;}
-        string NomeMae {get; set;}
+        public int Id {get; set;}
+        public int IdPessoa {get; set;}
+        public Pessoa Pessoa {get; set;}
+        public decimal QtdSolicitada {get; set;}
+        public decimal RendaMensal {get; set;}
+        public int Residencia {get; set;}
+        public bool Brasileiro {get; set;}
+        public string CidadeNatal {get; set;}
+        public string UfNatal {get; set;}
+        public string NomeMae {get; set;}
         
     }
 }

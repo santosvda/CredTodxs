@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CredTodxs.Repository.Interfaces;
+using CredTodxs.Repository.Repositorys;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,11 +27,12 @@ namespace CredTodxs.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-            .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = 
-            Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddMvc();
 
             services.AddCors();
+
+            services.AddScoped<IOfertaRepository, OfertaRepository>();
+
 
         }
 
