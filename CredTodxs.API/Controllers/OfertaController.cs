@@ -21,12 +21,12 @@ namespace CredTodxs.API.Controllers
 
         }
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Post(Oferta model)
+        public ActionResult<IEnumerable<string>> Post()
         {
             try
             {
-                var user = _OfertaRepository.PostOferta(model);
-                return Ok(model);
+                var oferta = _OfertaRepository.PostOferta();
+                return Ok(oferta);
             }
             catch (System.Exception)
             {

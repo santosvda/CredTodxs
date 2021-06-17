@@ -1,0 +1,16 @@
+<p>
+  Index works!
+</p>
+<tbody *ngIf="Ofertas && Ofertas.length">
+<div *ngFor="let oferta of Ofertas">
+  {{oferta.id}}
+  {{oferta.valorParcelas}}
+</div>
+</tbody>
+<tfoot *ngIf="!Ofertas.length"> 
+  <tr>
+    <td colspan="7" class="text-center">
+      <h3>Nenhuma oferta encontrada</h3>
+    </td>
+  </tr>
+</tfoot>
