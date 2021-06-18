@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { OfertaService } from '../_services/oferta.service';
 
 @Component({
   selector: 'app-Index',
@@ -10,20 +10,19 @@ export class IndexComponent implements OnInit {
 
   Ofertas: any = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private ofertaService: OfertaService) { }
 
   ngOnInit() {
     this.getOfertas();
   }
 
   getOfertas(){
-    this.http.get('http://localhost:5000/api/oferta/').subscribe(response => {
+    this.ofertaService.getOfertas().subscribe(response => {
       this.Ofertas = response;
       console.log(this.Ofertas)
     }, error => {
       console.log(error)
-    }
-    );
+    });
   }
 
 }
