@@ -1,4 +1,5 @@
 using System;
+using CredTodxs.Domain.Enums;
 
 namespace CredTodxs.Domain
 {
@@ -7,12 +8,14 @@ namespace CredTodxs.Domain
         public int Id {get; set;}
         public int IdSolicitacao {get; set;}
         public Solicitacao Solicitacao {get; set;}
+        public string NomeEmpresa {get; set;}
         public int QtdParcelas {get; set;}
-        public decimal ValorParcelas {get; set;}
-        public decimal Cet {get; set;}
-        public decimal Juros {get; set;}
-        public int FormaPagamento {get; set;}
-        public DateTime DataVencimento {get; set;}
-        public int TipoCredito {get; set;}
+        public double TotalPagar {get; set;}
+        public double ValorParcelas {get; set;}
+        public double CetMensal {get; set;}
+        public double CetAnual {get; set;}
+        public double Juros {get; set;}
+        public FormaPagamento FormaPagamento {get; set;}
+        public DateTime DataPrimeiroVencimento {get; set;}
     }
 }

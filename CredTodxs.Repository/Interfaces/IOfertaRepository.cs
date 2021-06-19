@@ -6,7 +6,7 @@ namespace CredTodxs.Repository.Interfaces
 {
     public interface IOfertaRepository
     {
-         List<Oferta> PostOferta();
+         List<Oferta> GeraOfertas(Solicitacao solicitacao);
          
     }
 }

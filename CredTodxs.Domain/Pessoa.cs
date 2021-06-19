@@ -1,4 +1,5 @@
 using System;
+using CredTodxs.Domain.Enums;
 
 namespace CredTodxs.Domain
 {
@@ -7,8 +8,8 @@ namespace CredTodxs.Domain
         public int Id {get; set;}
         public string Telefone {get; set;}
         public string Email {get; set;}
-        public int EstadoCivil {get; set;}
-        public int Escolaridade {get; set;}
+        public EstadoCivil EstadoCivil {get; set;}
+        public Escolaridade Escolaridade {get; set;}
         public char Sexo {get; set;}
         public DateTime DataNascimento {get; set;}
         public string Cpf {get; set;}

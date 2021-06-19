@@ -21,11 +21,11 @@ namespace CredTodxs.API.Controllers
 
         }
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Post()
+        public ActionResult<IEnumerable<string>> Post(Solicitacao model)
         {
             try
             {
-                var oferta = _OfertaRepository.PostOferta();
+                var oferta = _OfertaRepository.GeraOfertas(model);
                 return Ok(oferta);
             }
             catch (System.Exception)
