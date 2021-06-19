@@ -12,28 +12,43 @@ namespace CredTodxs.Repository.Repositorys
         public List<Oferta> GeraOfertas(Solicitacao solicitacao)
         {
             int qtdOfertas = new Random().Next(1, 3);
+            double aux = solicitacao.RendaMensal * 0.5;
 
             List<Oferta> ofertas = new List<Oferta>();
 
             for(int i = 0; i <= qtdOfertas; i++)
             {
+                int tentativas = 0;
                 Oferta oferta = new Oferta();
                 oferta.Solicitacao = solicitacao;
 
-                oferta.Juros = new Random().Next(10, 15);
-                oferta.QtdParcelas = new Random().Next(12, 23);
-                oferta.DataPrimeiroVencimento = DateTime.Now.AddDays(30);
+                while(tentativas <= 100){
+                    oferta.Juros = new Random().Next(50, 130);
+                    oferta.QtdParcelas = new Random().Next(12, 48);
+                    oferta.DataPrimeiroVencimento = DateTime.Now.AddDays(30);
 
 
-                oferta.ValorParcelas = CalculaParcela(oferta.Juros,oferta.QtdParcelas, solicitacao.QtdSolicitada);
-                oferta.TotalPagar = oferta.ValorParcelas * oferta.QtdParcelas;
+                    oferta.ValorParcelas = CalculaParcela(oferta.Juros,oferta.QtdParcelas, solicitacao.QtdSolicitada);
+                    oferta.TotalPagar = oferta.ValorParcelas * oferta.QtdParcelas;
 
-                oferta.CetMensal = CalculaCETMensal(oferta.TotalPagar, oferta.ValorParcelas, oferta.QtdParcelas);
-                oferta.CetAnual = CalculaCETAnual(oferta.TotalPagar, oferta.ValorParcelas, oferta.QtdParcelas,DateTime.Now, oferta.DataPrimeiroVencimento);
+                    if (oferta.ValorParcelas > aux)
+                    {
+                        tentativas++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                oferta.CetMensal = CalculaCETMensal(solicitacao.QtdSolicitada, oferta.ValorParcelas, oferta.QtdParcelas);
+                oferta.CetAnual = CalculaCETAnual(solicitacao.QtdSolicitada, oferta.ValorParcelas, oferta.QtdParcelas,DateTime.Now, oferta.DataPrimeiroVencimento);
 
                 oferta.FormaPagamento = (FormaPagamento)new Random().Next(1, 2);
 
-                ofertas.Add(oferta);
+                if (tentativas <= 100)
+                    ofertas.Add(oferta);
+
 
             }
 
@@ -43,6 +58,7 @@ namespace CredTodxs.Repository.Repositorys
 
         public double CalculaParcela(double taxaJuros, int qtdParcelas, double valorInicial)
         {
+            taxaJuros = taxaJuros / 100;
             double pagamento = (valorInicial * Math.Pow((taxaJuros / 12) + 1, (qtdParcelas)) * taxaJuros / 12)
                                     / (Math.Pow(taxaJuros / 12 + 1, (qtdParcelas)) - 1);
             return pagamento;

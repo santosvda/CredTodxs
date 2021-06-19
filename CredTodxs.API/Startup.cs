@@ -33,6 +33,10 @@ namespace CredTodxs.API
 
             services.AddScoped<IOfertaRepository, OfertaRepository>();
 
+            //Adicionando swagger
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo {Title = "CreditoParaTodxs", Version = "v1"});
+            });
 
         }
 
@@ -53,6 +57,13 @@ namespace CredTodxs.API
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => {
+                c.RoutePrefix = "swagger";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            });
         }
     }
 }

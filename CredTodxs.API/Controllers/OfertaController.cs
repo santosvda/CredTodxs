@@ -21,7 +21,7 @@ namespace CredTodxs.API.Controllers
 
         }
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Post(Solicitacao model)
+        public ActionResult<IEnumerable<string>> GetOfertas(Solicitacao model)
         {
             try
             {
